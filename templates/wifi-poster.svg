@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="210mm"
+    height="297mm"
+    viewBox="0 0 210 297">
+
+    <!-- Background -->
+    <rect width="210" height="297" fill="white"/>
+
+    <!-- Title -->
+    <text
+        x="105"
+        y="30"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="10"
+        font-weight="bold"
+        fill="black">
+        Avalik Wi-Fi
+    </text>
+
+    <!-- QR code -->
+    <g id="qr-code" transform="translate(75 50)">
+        {{QR_CODE}}
+    </g>
+
+    <!-- Network details -->
+    <text
+        x="20"
+        y="145"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="8"
+        fill="black">
+
+        <tspan x="20" dy="0">
+            Võrgu nimi (SSID): {{SSID}}
+        </tspan>
+
+        <tspan x="20" dy="12">
+            Parool: {{PASSWORD}}
+        </tspan>
+
+        <tspan x="20" dy="12">
+            Turvalisus: {{SECURITY}}
+        </tspan>
+    </text>
+
+</svg>

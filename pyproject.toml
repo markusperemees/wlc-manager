@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wlc-manager"
+version = "0.1.0"
+description = "Automated public Wi-Fi lifecycle management for Cisco AireOS WLC"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "APScheduler>=3.11.2,<4",
+    "CairoSVG>=2.8,<3",
+    "defusedxml>=0.7.1,<1",
+    "netmiko>=4.6,<5",
+    "pydantic>=2.11,<3",
+    "PyYAML>=6.0.2,<7",
+    "qrcode>=8.2,<9",
+    "tzdata>=2025.2",
+    "typer>=0.16,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4,<10",
+    "pytest-cov>=6.2,<8",
+    "ruff>=0.12,<1",
+]
+
+[project.scripts]
+wlc-manager = "wlc_manager.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]

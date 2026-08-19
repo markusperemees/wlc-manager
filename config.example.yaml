@@ -1,0 +1,69 @@
+app:
+  timezone: Europe/Tallinn
+
+scheduler:
+  wlan_check_seconds: 60
+  monthly_check_seconds: 3600
+  work_hours:
+    monday: {start: "08:00", end: "16:45"}
+    tuesday: {start: "08:00", end: "16:45"}
+    wednesday: {start: "08:00", end: "16:45"}
+    thursday: {start: "08:00", end: "16:45"}
+    friday: {start: "08:00", end: "15:45"}
+    saturday: null
+    sunday: null
+
+database:
+  path: data/wlc-manager.db
+
+password:
+  prefix: markus
+  dictionary_path: data/dictionary.txt
+  history_size: 12
+  random_digits: 3
+
+artifacts:
+  svg_template_path: templates/wifi-poster.svg
+  output_directory: artifacts
+  security_label: WPA2
+  qr_auth_type: WPA
+  qr_size_mm: 60
+  png_dpi: 300
+
+wlc:
+  host: 192.0.2.10
+  port: 22
+  device_type: cisco_wlc_ssh
+  wlan_id: 1
+  ssid: Public-WiFi
+  known_hosts_file: /run/secrets/ssh_known_hosts
+  connect_timeout_seconds: 10
+  read_timeout_seconds: 30
+
+smtp:
+  # Microsoft 365 tenant MX endpoint, for example example-ee.mail.protection.outlook.com
+  host: example-ee.mail.protection.outlook.com
+  port: 25
+  starttls: true
+  timeout_seconds: 15
+  max_attachment_bytes: 10000000
+  sender: wifi@example.internal
+  recipients:
+    - responsible@example.internal
+  subject_template: "Avaliku Wi-Fi andmed - {{MONTH}}"
+  body_template: |-
+    Tere
+
+    Manuses on {{MONTH}} avaliku Wi-Fi ühendusmaterjalid võrgu {{SSID}} jaoks.
+
+    See kiri on saadetud automaatselt.
+
+graylog:
+  enabled: false
+  host: graylog.example.internal
+  port: 12201
+  protocol: udp
+
+secrets:
+  wlc_username_file: /run/secrets/wlc_username
+  wlc_password_file: /run/secrets/wlc_password
